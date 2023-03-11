@@ -6,6 +6,7 @@ const { searchAndFilterOptions } = require("../utils/apiOptions");
 //CREATE A NEW PRODUCT
 exports.createProduct = catchAsyncError(async (req, res, next) => {
 	const product = await Product.create(req.body);
+	res.header("Access-Control-Allow-Origin", "*");
 	res.status(201).json({
 		success: true,
 		product,
@@ -23,6 +24,7 @@ exports.getAllProduct = catchAsyncError(async (req, res) => {
 
 		{ $facet: facet },
 	]);
+	res.header("Access-Control-Allow-Origin", "*");
 
 	res.status(201).json({
 		success: true,
@@ -37,6 +39,7 @@ exports.getSingleProduct = catchAsyncError(async (req, res, next) => {
 		return next(ErrorHandler("Product not found", 404, req, res));
 	}
 
+	res.header("Access-Control-Allow-Origin", "*");
 	res.status(201).json({
 		success: true,
 		product,
@@ -51,6 +54,7 @@ exports.deleteProduct = catchAsyncError(async (req, res, next) => {
 	}
 	await product.remove();
 
+	res.header("Access-Control-Allow-Origin", "*");
 	res.status(201).json({
 		success: true,
 		message: "Product removed successfully",
