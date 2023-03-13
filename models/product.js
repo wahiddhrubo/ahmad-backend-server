@@ -57,7 +57,6 @@ const productSchema = mongoose.Schema({
 	},
 	discountedPrice: {
 		type: Number,
-		required: true,
 	},
 	reviews: [{ type: mongoose.Schema.ObjectId, ref: "Review" }],
 	created_at: {
